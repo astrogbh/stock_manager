@@ -497,7 +497,7 @@ def tela_editar_produto():
         st.error("Produto não encontrado.")
         return
 
-    _, nome_at, desc_at, qtd_at, valor_at, categoria_at = prod
+    _, nome_at, desc_at, valor_at, qtd_at, categoria_at = prod
 
     nome = st.text_input("Nome", value=nome_at)
     desc = st.text_area("Descrição", value=desc_at)
