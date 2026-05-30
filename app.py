@@ -18,7 +18,8 @@ from backend import (
     validar_telefone,
     atualizar_cliente,
     listar_categorias,
-    listar_funcionarios
+    listar_funcionarios,
+    produtos_mais_vendidos,
 )
 
 # Inicialização das variáveis de sessão
@@ -40,13 +41,29 @@ st.set_page_config(page_title="Sistema de Estoque", layout="wide")
 def tela_escolha_login():
     st.title("Bem-vindo ao Sistema de Estoque!")
 
-    tipo = st.radio("Escolha uma opção:", ["Cliente", "Funcionário"])
+    st.subheader("Materiais mais vendidos")
+
+    produtos = produtos_mais_vendidos()
+
+    if produtos:
+        for nome, total in produtos:
+            st.write(f"🔹 {nome} - {total} unidades vendidas")
+    else:
+        st.info("Ainda não há vendas registradas.")
+
+    st.write("---")
+
+    tipo = st.radio(
+        "Escolha uma opção:",
+        ["Cliente", "Funcionário"]
+    )
 
     if st.button("Continuar"):
         if tipo == "Cliente":
             st.session_state.page = "login_cliente"
         else:
             st.session_state.page = "login_funcionario"
+
         st.rerun()
 
 def tela_login_cliente():
