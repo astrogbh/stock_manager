@@ -393,6 +393,7 @@ def buscar_funcionario(id_func):
     return dados
 
 def editar_funcionario(id_func, nome, usuario, senha, acesso):
+    
     conexao = conectar()
     cursor = conexao.cursor()
 
@@ -408,3 +409,25 @@ def editar_funcionario(id_func, nome, usuario, senha, acesso):
     cursor.execute(sql, (nome, usuario, senha, acesso, id_func))
     conexao.commit()
     conexao.close()
+
+def produtos_mais_vendidos(limite=5):
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    sql = """
+    SELECT
+        p.nome_produto,
+        SUM(ip.qtd_item_pedido) AS total_vendido
+    FROM tbl_itens_pedido_estoque_pedido ip
+    JOIN tbl_estoque_produtos p
+        ON p.id_produto = ip.fk_tbl_estoque_produtos_id_produto
+    GROUP BY p.id_produto, p.nome_produto
+    ORDER BY total_vendido DESC
+    LIMIT %s
+    """
+
+    cursor.execute(sql, (limite,))
+    produtos = cursor.fetchall()
+
+    conexao.close()
+    return produtos
