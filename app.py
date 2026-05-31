@@ -335,6 +335,13 @@ def tela_cadastro_produto():
     if st.button("Cadastrar"):
         from backend import cadastrar_produto
 
+        if valor < 0:
+            st.error("O valor do produto não pode ser negativo.")
+        elif quantidade < 0:
+            st.error("A quantidade não pode ser negativa.")
+        else:
+            cadastrar_produto(...)
+
         cadastrar_produto(
             nome,
             desc,
