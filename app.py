@@ -247,7 +247,8 @@ def tela_carrinho():
     for idx in sorted(itens_remover, reverse=True):
         st.session_state.carrinho.pop(idx)
 
-    st.subheader(f"Total: R$ {total:.2f}")
+        st.subheader(f"Total: R$ {total:.2f}")
+        confirmar = st.checkbox("Confirmo que desejo finalizar este pedido")
 
     if st.button("Finalizar Pedido"):
         from backend import criar_pedido, adicionar_item_pedido, atualizar_estoque
