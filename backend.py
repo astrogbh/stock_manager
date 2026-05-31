@@ -428,3 +428,13 @@ def produtos_mais_vendidos(limite=5):
 
     conexao.close()
     return produtos
+
+def total_produtos():
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    cursor.execute("SELECT COUNT(*) FROM tbl_estoque_produtos")
+    total = cursor.fetchone()[0]
+
+    conexao.close()
+    return total
