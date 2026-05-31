@@ -338,9 +338,6 @@ def editar_produto(id_produto, nome, descricao, quantidade, valor, minimo, id_ca
     conexao.commit()
     conexao.close()
 
-    conexao = conectar()
-    cursor = conexao.cursor()
-
 def listar_funcionarios():
     conexao = conectar()
     cursor = conexao.cursor()
