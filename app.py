@@ -509,6 +509,13 @@ def tela_editar_produto():
         st.error("Produto não encontrado.")
         return
 
+    if valor < 0:
+        st.error("O valor do produto não pode ser negativo.")
+    elif quantidade < 0:
+        st.error("A quantidade não pode ser negativa.")
+    else:
+        editar_produto(...)
+    
     _, nome_at, desc_at, valor_at, qtd_at, categoria_at = prod
 
     nome = st.text_input("Nome", value=nome_at)
