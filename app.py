@@ -157,9 +157,13 @@ def tela_cadastro_cliente():
         if len(endereco.strip()) < 3:
             st.error("Endereço inválido.")
             return
-        
-        cadastrar_cliente(nome, cpf, telefone, email, senha, endereco)
-        st.success("Cliente cadastrado com sucesso!")
+
+        if len(senha) < 8:
+            st.error("A senha deve possuir pelo menos 8 caracteres.")
+
+        else:
+            cadastrar_cliente(nome, cpf, telefone, email, senha, endereco)
+            st.success("Cliente cadastrado com sucesso!")
 
     if st.button("Ir para Produtos"):
         st.session_state.page = "produtos"
