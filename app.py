@@ -20,6 +20,7 @@ from backend import (
     listar_categorias,
     listar_funcionarios,
     produtos_mais_vendidos,
+    total_produtos
 )
 
 # Inicialização das variáveis de sessão
@@ -315,6 +316,10 @@ def tela_gestor():
     st.write("---")
     st.subheader("Total vendido")
     st.metric("Total em vendas", f"R$ {total_vendido()}")
+    st.metric(
+    "Produtos cadastrados",
+    total_produtos()
+)
 
 def tela_cadastro_produto():
     st.title("Cadastrar Produto")
